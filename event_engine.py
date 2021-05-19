@@ -22,7 +22,7 @@ class EventEngine:
 
         while iterator < self.input_text_size:
             character = self.input_text[iterator]
-            print(character)
+            
             try:
                 character = self.to_lower_regular_character(character)
                 decoded = bytes([character]).decode('utf-8')
