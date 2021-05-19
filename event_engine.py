@@ -3,7 +3,10 @@ from string import punctuation
 from functools import cmp_to_key
 import locale
 
+from const import BEGIN_CAPITAL_LETTERS, END_CAPITAL_LETTERS, BEGIN_CAPITAL_SPECIAL_LETTERS, END_CAPITAL_SPECIAL_LETTERS
+
 locale.setlocale(locale.LC_ALL, 'pt_BR')
+
 
 class EventEngine:
     regex_compiler_letters = re.compile('[A-Za-z0-9À-ÿ]')
@@ -22,7 +25,7 @@ class EventEngine:
 
         while iterator < self.input_text_size:
             character = self.input_text[iterator]
-            
+
             try:
                 character = self.to_lower_regular_character(character)
                 decoded = bytes([character]).decode('utf-8')
@@ -36,27 +39,26 @@ class EventEngine:
                 char_array = bytearray(bytes([character]))
 
                 next_character = self.input_text[iterator]
-                next_character = self.to_lower_special_character(next_character)
+                next_character = self.to_lower_special_character(
+                    next_character)
                 new_char_array = bytearray(bytes([next_character]))
-                
+
                 array = char_array + new_char_array
                 decoded = array.decode('utf-8')
             finally:
-                self.execute_main_loop(decoded) 
+                self.execute_main_loop(decoded)
                 iterator += 1
                 self.compute_last_word(iterator)
 
-
     def to_lower_regular_character(self, character):
-        if (65 <= character <= 90):
+        if (BEGIN_CAPITAL_LETTERS <= character <= END_CAPITAL_LETTERS):
             return character + 32
         return character
 
     def to_lower_special_character(self, character):
-        if (128 <= character <= 156):
+        if (BEGIN_CAPITAL_SPECIAL_LETTERS <= character <= END_CAPITAL_SPECIAL_LETTERS):
             return character + 32
         return character
-
 
     def execute_main_loop(self, character):
         if (self.is_letter_or_number(character)):
@@ -84,7 +86,8 @@ class EventEngine:
             pass
 
     def generate_results(self):
-        ordered_keys = sorted(self.words_count.keys(), key=cmp_to_key(locale.strcoll))
+        ordered_keys = sorted(self.words_count.keys(),
+                              key=cmp_to_key(locale.strcoll))
         for (key) in ordered_keys:
             self.ordered_count[key] = self.words_count[key]
         return self.ordered_count
