@@ -1,6 +1,6 @@
 ,count,keyword
 """",4,False
-",",8,True
+",",9,True
 .,3,False
 :,1,False
 ;,1,False
@@ -11,6 +11,7 @@ ao,2,False
 apenas,1,False
 após,1,False
 aproximando,1,False
+Às,1,False
 assim,1,False
 buraco,3,False
 cachoeira,2,False
@@ -73,3 +74,4 @@ um,3,False
 uma,2,False
 ver,1,False
 vez,1,False
+vezes,1,False

@@ -2,7 +2,7 @@ from runner import Runner
 from result_handler import ResultHandler
 
 keywords_list = ['o', 'Então', 'ali', ',']
-runner = Runner('teste.txt', keywords_list)
+runner = Runner('teste_novo.txt', keywords_list)
 results = runner.run()
 handler = ResultHandler(results, 'teste.csv')
 handler.save_results()
