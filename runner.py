@@ -1,4 +1,4 @@
-from event_engine import EventEngine
+from counter_event_engine import CounterEventEngine
 
 
 class Runner:
@@ -18,7 +18,7 @@ class Runner:
         self.configure_file()
         self.configure_keywords()
 
-        word_counter = EventEngine(self.file_content, self.keywords)
+        word_counter = CounterEventEngine(self.file_content, self.keywords)
         word_counter.run()
 
         return word_counter.generate_results()

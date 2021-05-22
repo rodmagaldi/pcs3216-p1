@@ -11,7 +11,7 @@ from const import (BEGIN_CAPITAL_LETTERS, END_CAPITAL_LETTERS,
 locale.setlocale(locale.LC_ALL, 'pt_BR')
 
 
-class EventEngine:
+class CounterEventEngine:
 
     def __init__(self, input_text, keywords):
         self.input_text = input_text
