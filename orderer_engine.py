@@ -12,15 +12,12 @@ class OrdererEngine:
 
     def run(self):
         for current_word in self.unordered_list:
-            # print('Current word: ' + current_word)
 
             if len(self.ordered_list) == 0:
                 self.ordered_list.append(current_word)
 
             else:
                 for comparing_word in self.ordered_list:
-
-                    # print('Comparing word: ' + comparing_word)
 
                     if (self.is_current_smaller_than_comparing(current_word, comparing_word)):
                         self.ordered_list.insert(
@@ -31,9 +28,7 @@ class OrdererEngine:
                         self.ordered_list.append(current_word)
                         break
 
-        # self.order_special_characters()
         self.generate_ordered_dict()
-        print(self.ordered_list)
 
     def is_current_smaller_than_comparing(self, current_word, comparing_word):
 
@@ -65,15 +60,6 @@ class OrdererEngine:
         if (len(current_word) > number_of_letters):
             return False
         return True
-
-    def order_special_characters(self):
-        for word in self.ordered_list:
-            for regular_char, special_chars_list in special_char_dict.items():
-                for letter in word:
-                    if (letter in special_chars_list):
-
-                        print(word)
-                        print(regular_char, special_chars_list)
 
     def generate_ordered_dict(self):
         for word in self.ordered_list:
