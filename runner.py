@@ -1,4 +1,5 @@
-from event_engine import EventEngine
+from counter_engine import CounterEngine
+from orderer_engine import OrdererEngine
 
 
 class Runner:
@@ -18,7 +19,12 @@ class Runner:
         self.configure_file()
         self.configure_keywords()
 
-        word_counter = EventEngine(self.file_content, self.keywords)
+        word_counter = CounterEngine(self.file_content, self.keywords)
         word_counter.run()
+        unordered_dict = word_counter.words_count
 
-        return word_counter.generate_results()
+        word_orderer = OrdererEngine(unordered_dict)
+        word_orderer.run()
+        ordered_dict = word_orderer.ordered_dict
+
+        return ordered_dict
