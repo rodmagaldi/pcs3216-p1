@@ -14,11 +14,9 @@ class ResultHandler:
 
     def save_results(self):
         self.configure_pd()
+        print(self.results_dataframe)
+        self.results_dataframe = self.results_dataframe[self.results_dataframe['keyword'] == False]
         self.results_dataframe.to_csv(self.save_path, index=True)
 
     def show_results(self):
         print(self.results_dataframe)
-
-    def show_keywords_results(self):
-        print(
-            self.results_dataframe[self.results_dataframe['keyword'] == True])
