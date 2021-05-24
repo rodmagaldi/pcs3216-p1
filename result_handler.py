@@ -6,6 +6,8 @@ class ResultHandler:
         self.results_dict = results_dict
         self.save_path = save_path
         self.results_dataframe = None
+        self.total_words = None
+        self.total_identified_words = None
 
     def configure_pd(self):
         self.results_dataframe = pd.DataFrame.from_dict(
@@ -14,8 +16,14 @@ class ResultHandler:
 
     def save_results(self):
         self.configure_pd()
-        print(self.results_dataframe)
-        self.results_dataframe = self.results_dataframe[self.results_dataframe['keyword'] == False]
+        self.total_words = self.results_dataframe.sum(axis=0)['count']
+        print(self.total_words)
+        self.results_dataframe = self.results_dataframe[self.results_dataframe['keyword'] == True]
+        self.total_identified_words = self.results_dataframe.sum(axis=0)[
+            'count']
+        print(self.total_identified_words)
+        print("{:.2f}".format(
+            100 * self.total_identified_words / self.total_words), "%")
         self.results_dataframe.to_csv(self.save_path, index=True)
 
     def show_results(self):
